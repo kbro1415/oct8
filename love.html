@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Anniversary</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #A39FE1;
+            color: white;
+            overflow: hidden;
+            margin: 0;
+            height: 100vh;
+        }
+
+        h1 {
+            font-size: 50px;
+            margin-top: 50px;
+            z-index: 10;
+            position: relative;
+            /* -webkit-text-stroke: 1px black; Black text border */
+            /* Fallback for text-shadow to create a text border */
+            text-shadow: 
+                2px 0 0 #000, /* Right shadow */
+                -2px 0 0 #000, /* Left shadow */
+                0 2px 0 #000,  /* Bottom shadow */
+                0 -2px 0 #000; /* Top shadow */
+        }
+
+        #timer {
+            font-size: 2em;
+        }
+        
+        #balloons{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+        #fireworks {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .balloon {
+            position: absolute;
+            animation: floatUp 10s ease-in-out infinite;
+            width: 40px; /* Adjusted balloon width */
+            height: 80px; /* Adjusted balloon height */
+        }
+        .year {
+            color: darkgreen; /* Set the color for the year */
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh); /* Start below the viewport */
+            }
+            100% {
+                transform: translateY(-150vh); /* Move up off the viewport */
+            }
+        }
+
+        .firework {
+            position: absolute;
+            animation: explode 4s forwards, fadeOut 4s forwards; /* Add animation */
+        }
+
+        @keyframes explode {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Happy Anniversary Ghosu!</h1>
+        <img src="one1.png" alt="" width="100px" height="120px" style="margin: 1rem 0;">
+        <div id="timer"></div>
+        <img src="partypoper_cat.gif">
+        <h3>You servive 1 Year with me Congratulation</h3>
+
+        <div id="balloons">
+            <!-- Balloons will appear here -->
+        </div>
+
+        <div id="fireworks">
+            <!-- Fireworks will appear here -->
+        </div>
+    </div>
+    <script>
+        function updateTimer() {
+            const startDate = new Date('October 9, 2023');
+            const currentDate = new Date();
+            const diff = currentDate - startDate;
+
+            const seconds = Math.floor((diff / 1000) % 60);
+            const minutes = Math.floor((diff / 1000 / 60) % 60);
+            const hours = Math.floor((diff / 1000 / 60 / 60) % 24);
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const months = Math.floor(days / 30); // Approximate months
+            const years = Math.floor(months / 12); // Approximate years
+
+            const displayYears = years;
+            const displayMonths = months % 12; // Remaining months
+            const displayDays = days % 30; // Remaining days
+
+            document.getElementById('timer').innerHTML =
+                `<span class="year">${displayYears} years</span>, ${displayMonths} months, ${displayDays} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer(); // Initial call to display immediately
+    </script>
+    <script>
+        async function loadSVG(filePath) {
+            const response = await fetch(filePath);
+            if (!response.ok) throw new Error('Failed to load SVG');
+            return await response.text();
+        }
+
+        async function startCelebration() {
+            await generateBalloons();
+            generateFireworks();
+        }
+
+        async function generateBalloons() {
+            const colors = ['red', 'blue', 'green', 'yellow', 'purple'];
+            const balloonSVG = await loadSVG('balloon-svgrepo-com.svg'); // Adjust the path as necessary
+            
+            // Replace the fill color in the SVG
+            const balloonContainer = document.getElementById('balloons');
+            balloonContainer.innerHTML = '';  // Clear previous balloons
+            for (let i = 0; i < 50; i++) {
+                let balloonDiv = document.createElement('div');
+                balloonDiv.className = 'balloon';
+                let color = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Replace the fill color in the loaded SVG
+                const coloredSVG = balloonSVG.replace(/fill="[^"]*"/, `fill="${color}"`);
+                
+                balloonDiv.innerHTML = coloredSVG;
+                balloonDiv.style.left = Math.random() * 100 + 'vw';
+                balloonDiv.style.top = '100vh'; // Start from the bottom of the viewport
+                balloonDiv.style.animationDelay = Math.random() * 5 + 's'; // Random delay for each balloon
+                balloonContainer.appendChild(balloonDiv);
+            }
+        }
+
+        function generateFireworks() {
+            const fireworkSVG = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
+                    <circle cx="25" cy="25" r="5" fill="yellow"/>
+                    <line x1="25" y1="0" x2="25" y2="15" stroke="yellow" stroke-width="2"/>
+                    <line x1="25" y1="35" x2="25" y2="50" stroke="yellow" stroke-width="2"/>
+                    <line x1="0" y1="25" x2="15" y2="25" stroke="yellow" stroke-width="2"/>
+                    <line x1="35" y1="25" x2="50" y2="25" stroke="yellow" stroke-width="2"/>
+                    <line x1="7" y1="7" x2="18" y2="18" stroke="yellow" stroke-width="2"/>
+                    <line x1="32" y1="32" x2="43" y2="43" stroke="yellow" stroke-width="2"/>
+                    <line x1="7" y1="43" x2="18" y2="32" stroke="yellow" stroke-width="2"/>
+                    <line x1="32" y1="18" x2="43" y2="7" stroke="yellow" stroke-width="2"/>
+                </svg>
+            `;
+            const fireworkContainer = document.getElementById('fireworks');
+            fireworkContainer.innerHTML = '';  // Clear previous fireworks
+            for (let i = 0; i < 25; i++) {
+                let fireworkDiv = document.createElement('div');
+                fireworkDiv.className = 'firework';
+                fireworkDiv.innerHTML = fireworkSVG;
+                fireworkDiv.style.left = Math.random() * 100 + 'vw';
+                fireworkDiv.style.top = Math.random() * 100 + 'vh';
+                fireworkContainer.appendChild(fireworkDiv);
+            }
+        }
+
+        // Start celebration when the page loads
+        window.onload = function() {
+            startCelebration();
+            setInterval(generateFireworks, 4000); // Keep generating fireworks every 4 seconds
+        };
+    </script>
+</body>
+</html>

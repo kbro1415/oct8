@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>october 9, 2023</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #fcd9fd;
+            color: #fcd9fd;
+        }
+
+        #codeDisplay {
+            font-size: 18px;
+            background-color: black;
+            color: #fcd9fd;
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid #fcd9fd;
+            width: 70%;
+            height: 30rem;
+            overflow-y: auto; /* Enable vertical scrolling */
+            white-space: pre-wrap; /* Preserve white space for code formatting */
+        }
+
+        h1 {
+            color: #fcd9fd;
+        }
+
+        a {
+            color: #fcd9fd;
+            margin-top: 20px;
+            visibility: visible;
+            background-color: black;
+            padding: 0.5rem 3rem;
+            border: 1px solid;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <img src="unnamed.png" alt="" width="200" height="200">
+    
+    <!-- Display area for typing animation -->
+    <div id="codeDisplay"></div>
+    <a href="love.html">Click Me</a>
+
+    <script>
+        // The text that will be "typed" out
+        const codeText = `
+        Happy anniversary, Maya.
+        I don't know how to wish you a Our first anniversary, 
+        It may be cringy but I will just explain my memories, timi lai tha xa tai pani.
+
+        From the first semester, I saw you and interacted with you. From that moment, I 
+        started liking you. Day by day, I don't know how you feel and how you judged me, but
+        I was so madly in love with you that I had countless sleepless nights. Just to see
+        you, I used to go to college, and if we interacted that day, I felt so special, and
+        that made my day. You dont know this ki timi lai text gare ra note magne bahana matra
+        thiyo timro msg aaye paxi khai kina ho ramro lagthiyo.
+
+        Also, kta horu le jiskauthiye tara ni malai testo kaile ni na ramro lagye na tini horu
+        le nai garda yetiko bolna sakne vako jasto lauxa timro case ma. the teasing from our 
+        friends made us mad, but rather they pushed us to be.There was a point where 
+        I was in such a dilemma that if I adimit vane timi ma sanga kaile pani bolthinau.
+        There was a time when we were not talking to each other, which made our relationship 
+        stronger than ever. We were completely avoiding each other. Eak din, timi class bata 
+        baira niskida ra ma class ma aauda dhoka ma timi lai akasai dekhda kasto heartbeat 
+        bade ko thiyo. Yestai timi sanga na bolne reason le garda ni, I was waiting for my
+        college days to be over
+
+        But on October 9, 2023, that drunk text from you completely changed our lives. I 
+        clearly remember Piyush uncle ra ma movie heri ra ko thiyam. Maile movie ko snap 
+        khichna mobile nikale ko ta timro msg dekhya. When I opened it, it was a long text.
+        Padna thalye ko ta process nai garna sake ra thiyena I was shaking and having
+        butterflies. Ani Piyush lai room ma bolaye ani dekhaye timro msg; her ta smriti 
+        ko msg aako raixa maile ta process nai garna saki ra ko xaina, and he explained
+        the situation to me. I know that you were searching for a friend, but he made 
+        me realize that I should take a chance.
+
+        That day changed my whole life. Timi sanga bolne, basna, khaja khana jane,
+        it felt good on different level I got you; you are not just my girlfriend; you
+        areeverything to me. You bring me luck. Aile ko time ma aklai huda pani you
+        are on my side No one has loved me like you do.
+        
+        I love everything about you: your crying, sleeping, irritation, anger, sadness,
+        and all your moodswings. Khoi kina ho timi lai jiskauna jati ko majja kai 
+        kura ma ni xain. Tara ghose risai halxe.
+
+        Malai tha xa mummy baba lai fakauna garo xa vanne, but I will try my best.
+        I may convince them that no one will love you as I do and that no one will 
+        keep you happy as I do, despite your moodswings, because it is so difficult
+        to predict.
+
+        Sangai vaye ra first aniversary manaula vane ko... kai xaina nepala
+        ayera manula
+
+        From the journey from Bastola to your baby was the best thing that has ever 
+        happened. There are more things ahead in our life, Aajai katti runa ra 
+        fakaunai doll kindina vanna baki xa hola soche rai jhau lai sakyo tai pani
+        these littel things make life exciting and I can't wait to experince with you.
+
+        Happy anniversary, my love.
+        `;
+
+        // The element where the text will be displayed
+        const codeDisplay = document.getElementById('codeDisplay');
+        const showLink = document.getElementById('showLink');
+        let index = 0;  // Keeps track of the current character
+
+        // Function to display the text character by character
+        function typeCode() {
+            if (index < codeText.length) {
+                codeDisplay.textContent += codeText[index];
+                index++;
+                codeDisplay.scrollTop = codeDisplay.scrollHeight; // Scroll to the bottom
+                setTimeout(typeCode, 1);  // Adjust the speed by changing the timeout duration
+            } else {
+                // Once typing is done, show the anchor tag
+                showLink.style.visibility = 'visible';
+            }
+        }
+
+        // Start typing when the page loads
+        window.onload = function() {
+            typeCode();
+        };
+    </script>
+
+</body>
+</html>
